@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TangkalNaonAR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8F9FA;
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+    <div class="w-full max-w-md bg-[#FAFAF9] min-h-screen sm:min-h-[850px] shadow-xl sm:rounded-3xl overflow-hidden flex flex-col justify-between relative border border-gray-100">
+        
+        <div class="px-6 pt-3 flex justify-between items-center text-xs font-medium text-gray-700">
+            <span>9:41</span>
+            <span class="material-symbols-outlined text-sm">battery_full</span>
+        </div>
+
+        <header class="px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-[#2A5C43] flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-lg">eco</span>
+                </div>
+                <span class="text-xl font-bold text-[#1A3024]">TangkalNaon<span class="text-[#2A5C43]">AR</span></span>
+            </div>
+            <button class="w-10 h-10 rounded-full bg-[#E8EFEA] flex items-center justify-center text-[#2A5C43] relative">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full"></span>
+            </button>
+        </header>
+
+        <main class="px-6 flex-1 overflow-y-auto pb-8">
+            
+            <div class="relative rounded-2xl overflow-hidden mb-8 h-48 bg-cover bg-center flex flex-col justify-between p-5 text-white shadow-md" 
+                 style="background-image: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%), url('https://images.unsplash.com/photo-1545147986-a9d6f2103c59?q=80&w=1000&auto=format&fit=crop');">
+                <div class="self-start bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-medium flex items-center gap-1 border border-white/20">
+                    <span class="material-symbols-outlined text-xs">auto_awesome</span>
+                    WebAR Aktif
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold leading-tight mb-1">Scan Stiker QR Tanaman,<br>Hidupkan Edukasi AR</h2>
+                    <p class="text-[11px] text-gray-200 leading-relaxed font-light">
+                        Eksplorasi 200+ spesies pohon lokal dengan teknologi Augmented Reality langsung dari kameramu.
+                    </p>
+                </div>
+            </div>
+
+            <div id="scanner-container" class="hidden fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4 sm:absolute sm:rounded-3xl">
+                <div class="w-full max-w-sm bg-white rounded-2xl overflow-hidden shadow-2xl relative p-4">
+                    <h3 class="text-sm font-bold text-gray-800 text-center mb-3">Arahkan Kamera ke QR Code</h3>
+                    <div id="reader" class="w-full rounded-xl overflow-hidden bg-gray-100"></div>
+                    <button id="close-btn" class="mt-4 w-full py-2.5 bg-red-500 text-white font-medium rounded-xl text-xs hover:bg-red-600 transition-colors">
+                        Batal Tutup Kamera
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center my-10">
+                <div class="w-32 h-32 rounded-full bg-emerald-700/5 flex items-center justify-center border border-emerald-700/10">
+                    <button id="scan-btn" class="w-24 h-24 rounded-3xl bg-[#2A5C43] shadow-lg shadow-emerald-900/30 flex flex-col items-center justify-center text-white gap-1 hover:bg-[#214734] transition-all transform active:scale-95">
+                        <span class="material-symbols-outlined text-3xl">qr_code_scanner</span>
+                        <span class="text-xs font-semibold tracking-wide">Scan QR</span>
+                    </button>
+                </div>
+                <h3 class="text-sm font-semibold text-gray-700 mt-4">Scan QR Tanaman</h3>
+                <p class="text-xs text-gray-400 mt-1">Tekan untuk membuka kamera scanner</p>
+            </div>
+
+            <section class="mt-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-base font-bold text-[#1A3024]">Cara Penggunaan</h4>
+                    <span class="text-xs font-medium text-[#2A5C43]">3 langkah mudah</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-2xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#E8EFEA] text-[#2A5C43] flex items-center justify-center">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 font-medium">01 <span class="text-gray-700 font-semibold ml-1">Temukan QR di Pohon</span></p>
+                                <p class="text-[11px] text-gray-400 mt-0.5 max-w-[220px]">Cari stiker QR yang terpasang pada papan pohon di sekitar taman.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-2xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#E8EFEA] text-[#2A5C43] flex items-center justify-center">
+                                <span class="material-symbols-outlined">center_focus_strong</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 font-medium">02 <span class="text-gray-700 font-semibold ml-1">Klik Tombol Scan</span></p>
+                                <p class="text-[11px] text-gray-400 mt-0.5 max-w-[220px]">Tekan tombol scan besar di tengah layar dan arahkan kamera ke QR.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-2xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#E8EFEA] text-[#2A5C43] flex items-center justify-center">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 font-medium">03 <span class="text-gray-700 font-semibold ml-1">Lihat Informasi AR</span></p>
+                                <p class="text-[11px] text-gray-400 mt-0.5 max-w-[220px]">Informasi botanikal muncul langsung di layarmu dalam mode Augmented Reality.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const scanBtn = document.getElementById('scan-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const scannerContainer = document.getElementById('scanner-container');
+        let html5QrCode;
+
+        // Fungsi ketika QR Code sukses di-scan
+        function onScanSuccess(decodedText, decodedResult) {
+            // Hentikan kamera setelah berhasil scan
+            stopScanner();
+            
+            // Aksi setelah berhasil scan: Jika isi QR-nya link, dia langsung buka link AR-nya
+            alert("QR Code Terdeteksi! Membuka data: " + decodedText);
+            if (decodedText.startsWith("http://") || decodedText.startsWith("https://")) {
+                window.location.href = decodedText; 
+            }
+        }
+
+        // Fungsi menyalakan kamera
+        scanBtn.addEventListener('click', () => {
+            scannerContainer.classList.remove('hidden'); // Munculkan layar hitam overlay kamera
+            
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+            // Menggunakan kamera belakang ponsel secara otomatis
+            html5QrCode.start(
+                { facingMode: "environment" }, 
+                config, 
+                onScanSuccess
+            ).catch((err) => {
+                console.error("Gagal akses kamera: ", err);
+                alert("Mohon izinkan akses kamera pada browser Anda agar fitur scan berfungsi.");
+                stopScanner();
+            });
+        });
+
+        // Fungsi mematikan kamera
+        function stopScanner() {
+            if (html5QrCode && html5QrCode.isScanning) {
+                html5QrCode.stop().then(() => {
+                    scannerContainer.classList.add('hidden');
+                }).catch((err) => console.error("Gagal stop kamera", err));
+            } else {
+                scannerContainer.classList.add('hidden');
+            }
+        }
+
+        // Tombol batal
+        closeBtn.addEventListener('click', stopScanner);
+    </script>
+</body>
+</html>
