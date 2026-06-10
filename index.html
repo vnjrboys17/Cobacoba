@@ -151,13 +151,21 @@
         let html5QrCode;
 
         // 1. DATABASE LOKAL SEDERHANA (Tempat menyimpan info tanaman & file .glb)
+       // 1. DATABASE LOKAL SEDERHANA (Tempat menyimpan info tanaman & file .glb)
         const plantDatabase = {
             "palm": {
                 name: "Pohon Palem Raja",
                 latin: "Roystonea regia",
                 family: "Arecaceae",
-                modelUrl: "tropical_palm_tree.glb", // <-- Taruh file .glb kamu di folder yang sama di GitHub
+                modelUrl: "tropical_palm_tree.glb", 
                 desc: "Palem raja adalah tumbuhan berkeping satu (monokotil) yang termasuk dalam keluarga Arecaceae. Pohon ini memiliki batang lurus, kokoh, dan tidak bercabang. Sering digunakan sebagai tanaman hias jalur hijau jalan atau taman besar."
+            },
+            "mangga": {
+                name: "Pohon Mangga",
+                latin: "Mangifera indica",
+                family: "Anacardiaceae",
+                modelUrl: "pohon-dewasa-mangga-fast-low-fast-preview.glb", // <-- File aset mangga yang baru ditambahkan
+                desc: "Pohon mangga adalah tanaman berkayu dengan tajuk yang rimbun dan daun lebat. Tanaman ini sangat populer ditanam di pekarangan rumah sebagai pohon peneduh sekaligus penghasil buah yang manis."
             }
         };
 
